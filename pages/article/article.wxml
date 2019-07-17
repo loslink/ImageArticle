@@ -1,0 +1,57 @@
+<view class="rootContainer">
+  <view class="articleRoot">
+
+    <view class='headContainer'>
+
+      <view class='topHeadContainer'>
+        <image class="userHead" src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2594287337,3052279307&fm=26&gp=0.jpg'>
+        </image>
+        <image class="headWrapper" src='../../image/ic_head_wraper.png'>
+        </image>
+      </view>
+
+      <text class='name'>亲爱的Loslink</text>
+      <image class="headGif" mode='widthFix' src='http://photocdn.sohu.com/20150420/mp11543628_1429492604737_16.gif'>
+      </image>
+      <text class='name' style='color:{{colors[-1]}}'>今天是7月13日</text>
+      <text class='name' style='color:{{colors[-1]}}'>星期天</text>
+      <text class='name' style='color:{{colors[-2]}}'>千言万语不如一句祝福</text>
+      <text class='name' style='color:{{colors[-3]}}'>祝愿所有的朋友</text>
+      <text class='name' style='color:{{colors[-4]}}'>天天快乐</text>
+      <text class='name' style='color:{{colors[-5]}}'>看到的人都有好福气</text>
+    </view>
+
+    <block wx:for-items="{{detailData.contents}}" wx:for-item="content" wx:key='index' wx:for-index="index">
+      <image class="headGif" mode='widthFix' src='{{content.photo}}'></image>
+      <block wx:for-items="{{content.msg}}" wx:for-item="msg" wx:for-index="msgIndex">
+        <text class='name' style='color:{{colors[index%colors.length]}}'>{{msg}}</text>
+      </block>
+    </block>
+
+    <!-- <block wx:if="{{'jj'==='http'}}">
+      <text class='name'>福气qqq{{detailData.title}}</text>
+    </block>
+    <block wx:else>
+      <text class='name'>福气dd{{detailData.title}}</text>
+    </block> -->
+    <view class='footContainer'>
+     <view class='topHeadContainer'>
+        <image class="userHead" src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2594287337,3052279307&fm=26&gp=0.jpg'>
+        </image>
+        <image class="headWrapper" src='../../image/ic_head_wraper.png'>
+        </image>
+      </view>
+      <text class='name'>亲爱的Loslink</text>
+      <text class='name' style='color:{{colors[-1]}}'>亲爱的朋友</text>
+      <text class='name' style='color:{{colors[-1]}}'>一定要注意身体</text>
+      <text class='name' style='color:{{colors[-2]}}'>注意休息</text>
+      <text class='name' style='color:{{colors[-3]}}'>多喝水多吃水果</text>
+      <text class='name' style='color:{{colors[-4]}}'>愿您开开心心度过哪一天</text>
+      <text class='name' style='color:{{colors[-5]}}'>一定能够要把祝福传递出去</text>
+    </view>
+
+  </view>
+
+  <image class="floatMusic" animation="{{animationData}}" src='../../image/ic_music.png'>
+  </image>
+</view>

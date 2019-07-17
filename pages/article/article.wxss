@@ -1,0 +1,69 @@
+/* pages/article/article.wxss */
+
+.rootContainer{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.articleRoot{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.headContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.footContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.name{
+  margin-top: 20rpx;
+  font-size: 36rpx
+}
+
+.topHeadContainer{
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 20rpx;
+  position: relative; 
+  display:flex;     
+  justify-content: center; /*水平居中*/
+  align-items:center; /*垂直居中*/
+}
+
+.userHead{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  position: absolute;
+}
+
+.headWrapper{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.headGif{
+  width: 678rpx;
+  height: 100%;
+  margin-top: 20rpx;
+}
+
+.floatMusic{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  position: fixed;
+  margin-right: 10px;
+  /* position: absolute;  */
+  right: 0; 
+}

@@ -1,0 +1,107 @@
+/* pages/home/home.wxss */
+
+.rootContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.headContainer {
+  width: 694rpx;
+  height: 297rpx;
+  margin: 28rpx;
+  position: relative;
+}
+
+.head {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.headBg {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.title {
+  color: #fff;
+  font-size: 48rpx;
+  margin-top: 26rpx;
+  font-weight: bold;
+}
+
+.date {
+  color: #323232;
+  font-size: 30rpx;
+  margin-top: 16rpx;
+  font-weight: bold;
+}
+
+.week {
+  color: #323232;
+  font-size: 30rpx;
+  margin-top: 16rpx;
+  font-weight: bold;
+}
+
+.image {
+  background-color: #333;
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.itemContainer {
+  width: 694rpx;
+  height: 420rpx;
+  margin-left: 28rpx;
+  margin-right: 28rpx;
+  margin-bottom: 24rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.itemText {
+  width: 646rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding-left: 25rpx;
+  padding-bottom: 10rpx;
+  padding-right: 25rpx;
+  padding-top: 20rpx;
+  color: white;
+  font-size: 40rpx;
+  font-weight: bold;
+  /* background-color: #000000;
+  opacity:0.5;  */
+  background:rgba(0,0,0,0.5); 
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  
+
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  
+}
+
+.playIcon {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 36rpx;
+  margin-top: 36rpx;
+}

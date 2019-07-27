@@ -1,14 +1,20 @@
 // pages/article/article.js
 var util = require("../../utils/util.js")
 var globalData = require("../../data/globalData.js")
-
+const app = getApp()
+var index
+var article
 var innerAudioContext
+var isPlay=false
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
@@ -18,13 +24,25 @@ Page({
      wx.setNavigationBarTitle({
       title: '文章详情'
     })
-    var index=options.index
+    index=options.index
     var week = util.currentDateWeek()
     console.log("index:" + index + week.time + week.week)
-    const article = globalData.list[index]
+    article = globalData.list[index]
+    var headPhoto
+    const timeType=util.currentTimeType()
+    if (timeType == 0){
+      headPhoto ="https://img.wowoqq.com/allimg/150327/1-15032F05541.gif"
+    } else if (timeType == 1){
+      headPhoto = "https://img.wowoqq.com/allimg/170527/1-1F52H24G4-52.gif"
+    }else{//晚上
+      headPhoto = "https://tu.jiuwa.net/pic/20180202/1517580151249109.gif"
+    }
     this.setData({
       detailData: article,
       colors: util.colors,
+      date: week.time,
+      week: week.week,
+      headPhoto: headPhoto,
       animationData: {}
     })
 
@@ -43,7 +61,7 @@ Page({
     })
 
     var animation = wx.createAnimation({
-      duration: 2000,
+      duration: 200,
       timingFunction: 'linear',
     })
     this.animation = animation
@@ -51,15 +69,21 @@ Page({
       animationData: animation.export()
     })
     var n = 0;
+    isPlay = true
     //连续动画需要添加定时器,所传参数每次+1就行
     setInterval(function () {
-      n = n + 1;
-      // console.log(n);
-      this.animation.rotate(10 * (n)).step()
-      this.setData({
-        animationData: this.animation.export()
-      })
+      if (isPlay){
+        n = n + 1;
+        // console.log(n);
+        this.animation.rotate(10 * (n)).step()
+        this.setData({
+          animationData: this.animation.export()
+        })
+      }
+      
     }.bind(this), 200)
+
+    this.getUser2()
   },
 
   /**
@@ -109,6 +133,78 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let that = this;
+    return {
+      title: article.title, // 转发后 所显示的title
+      // path: 'pages/article/article?index=' + index, // 相对的路径
+      path: 'pages/home/home?index=' + index, // 相对的路径
+      imageUrl: article.coverUrl,
+      success: (res) => {    // 成功后要做的事情
+        console.log(res.shareTickets[0])
 
+        wx.getShareInfo({
+          shareTicket: res.shareTickets[0],
+          success: (res) => {
+            that.setData({
+              isShow: true
+            })
+            console.log(that.setData.isShow)
+          },
+          fail: function (res) { console.log(res) },
+          complete: function (res) { console.log(res) }
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res)
+      }
+    }
+  },
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+  getUser2:function(){
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  }
+
+  , musicTap(event) {
+    if (isPlay){
+      isPlay = false
+      innerAudioContext.pause()
+    }else{
+      isPlay = true
+      innerAudioContext.play()
+    }
+    
   }
 })

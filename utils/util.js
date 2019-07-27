@@ -24,24 +24,44 @@ function formatTime2(date) {
   return year + "年" + month + "月" + day + "日";
 }
 
+
+function currentTimeType() {
+  var date=new Date()
+  var hour = date.getHours()
+  var type=0
+  if (hour > 6 && hour <= 12){//早上
+    type = 0
+  } else if (hour > 12 && hour <= 18){//下午
+    type = 1
+  }else{//晚上
+    type = 2
+  }
+  return type;
+}
+
 function currentDateWeek() {
   let dateObj = {};
   let show_day = new Array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
   let date = new Date();
   let day = date.getDay();
   let yearDate = date.getFullYear();
-  let month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
-  let dayFormate = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
-  dateObj.time = yearDate + '年' + month + '月' + dayFormate + "日";
+  // let month = ((date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1);
+  // let dayFormate = (date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate());
+  let month = date.getMonth() + 1;
+  let dayFormate = date.getDate();
+  // dateObj.time = yearDate + '年' + month + '月' + dayFormate + "日";
+  dateObj.time =  month + '月' + dayFormate + "日";
   dateObj.week = show_day[day];
   return dateObj;
 }
 
-const colors = ["#d42b2b","#2bd46c"]
+const colors = ["#323232"]
+// const colors = ["#d42b2b","#2bd46c"]
 
 module.exports = {
   formatTime: formatTime,
   formatTime2: formatTime2,
   currentDateWeek: currentDateWeek,
-  colors:colors
+  colors:colors,
+  currentTimeType: currentTimeType
 }

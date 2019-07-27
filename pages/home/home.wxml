@@ -1,29 +1,39 @@
-<view class="rootContainer">
+<view class="root">
 
-  <view class='headContainer'>
-  <image class="headBg"  src="../../image/ic_headview.png">
+  <!-- <image class="background" src='../../image/ic_background.png'></image> -->
+  <view class="rootContainer">
+
+    <view class='headContainer'>
+      <!-- <image class="headBg"  src="../../image/ic_headview.png">
+      </image> -->
+      <image class="headBg" src="{{headBg}}">
       </image>
-    <view class='head'>
-    <text class='title'>人生日历</text>
-    <text class='date'>{{date}}</text>
-    <text class='week'>{{week}}</text>
-    <text class='week'>{{luner}}</text>
-  </view>
-  </view>
-
-  <!-- <video src='http://video.699pic.com/videos/85/08/79/a_ZBVkgmya3Wiw1544850879.mp4'>
-  </video> -->
-
-  <block wx:for-items="{{articleList}}" wx:key="{{item.id}}">
-
-    <view class='itemContainer'>
-      <image bindtap="itemTap" data-index="{{index}}" class="image" src="{{item.coverUrl}}">
-      </image>
-      <text class='itemText'>{{item.title}}</text>
-      <image class='playIcon' src='../../image/ic_play.png'>
-      </image>
+      <view class='head'>
+        <text class='title'>{{title}}</text>
+        <text class='date'>{{date}}</text>
+        <text class='week'>{{week}}</text>
+        <text class='week'>{{luner}}</text>
+      </view>
     </view>
 
-  </block>
+    <!-- <video src='http://video.699pic.com/videos/85/08/79/a_ZBVkgmya3Wiw1544850879.mp4'>
+  </video> -->
 
+    <block wx:for-items="{{articleList}}" wx:key="{{item.id}}">
+
+      <view class='itemContainer'>
+        <image bindtap="itemTap" mode="aspectFill" data-index="{{index}}" class="image" src="{{item.coverUrl}}">
+        </image>
+        <text class='itemText'>{{item.title}}</text>
+        <image class='playIcon' src='../../image/ic_play.png'>
+        </image>
+      </view>
+
+    </block>
+
+  </view>
+
+  <loading hidden="{{hiddenLoad}}">
+    加载中...
+  </loading>
 </view>

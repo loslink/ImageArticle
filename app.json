@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "祝福图文",
+    "navigationBarTitleText": "祝福小图文",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

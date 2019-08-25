@@ -1,15 +1,14 @@
-// pages/article/article.js
+
+var snow = require('../../utils/Snow.js');
+var fallingObj = require('../../utils/FallingObj.js');
 var util = require("../../utils/util.js")
 var globalData = require("../../data/globalData.js")
-var fallingObj = require('../../utils/FallingObj.js');
 const app = getApp()
-var id
+var index
 var article
 var innerAudioContext
 var isPlay = false
-var context
 
-wx.cloud.init()
 const W = wx.getSystemInfoSync().windowWidth;
 const H = wx.getSystemInfoSync().windowHeight;
 Page({
@@ -20,58 +19,46 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    hiddenLoad: false,
+    animationButton: {},
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
-    context = this
-    console.log("onLoad")
+  onLoad: function (options) {
+  
+    var image = "../../image/float_star.png"
+    // var image = "http://pic.90sjimg.com/original_origin_pic/18/11/14/cd632ddb672b7f2bdcc55e3d59e8e13c.png!/fwfh/804x804/quality/90/unsharp/true/compress/true/watermark/url/LzkwX3dhdGVyX3Y2LnBuZw==/repeat/true"
+    // snow.init(image);
+    // fallingObj.play('../../image/float_star.png')
     fallingObj.play("")
     wx.setNavigationBarTitle({
       title: '文章详情'
     })
-    id = options.id
+    index = options.index
     var week = util.currentDateWeek()
-    console.log("id:" + id + week.time + week.week)
-
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'getArticleDetail',
-      data: {
-        id: id,
-        tableName: "articles"
-      },
-      success: function (res) {
-        console.log(res.result) // 3
-        article = res.result.data
-        context.setData({
-          detailData: article,
-          colors: util.colors,
-          date: week.time,
-          week: week.week,
-          headPhoto: headPhoto,
-          hiddenLoad: true,
-          animationData: {}
-        })
-        context.playMusic()
-      },
-      fail: console.error
-    })
-    // article = globalData.list[index]
+    console.log("index:" + index + week.time + week.week)
+    article = globalData.list[index]
     var headPhoto
     const timeType = util.currentTimeType()
     if (timeType == 0) {
       headPhoto = "https://img.wowoqq.com/allimg/150327/1-15032F05541.gif"
     } else if (timeType == 1) {
       headPhoto = "https://img.wowoqq.com/allimg/170527/1-1F52H24G4-52.gif"
-    } else { //晚上
+    } else {//晚上
       headPhoto = "https://tu.jiuwa.net/pic/20180202/1517580151249109.gif"
     }
+    this.setData({
+      detailData: article,
+      colors: util.colors,
+      date: week.time,
+      week: week.week,
+      headPhoto: headPhoto,
+      animationData: {}
+    })
+
+
     var animation = wx.createAnimation({
       duration: 200,
       timingFunction: 'linear',
@@ -83,7 +70,7 @@ Page({
     var n = 0;
     isPlay = true
     //连续动画需要添加定时器,所传参数每次+1就行
-    setInterval(function() {
+    setInterval(function () {
       if (isPlay) {
         n = n + 1;
         // console.log(n);
@@ -98,16 +85,15 @@ Page({
     this.getUser2()
 
     buttonAnim()
-    const that = this
-
-    function buttonAnim() {
+    const that=this
+    function buttonAnim(){
       var animation = wx.createAnimation({
         duration: 500,
         timingFunction: 'ease',
       })
       var next = true;
       //连续动画关键步骤
-      setInterval(function() {
+      setInterval(function () {
         if (next) {
           animation.scale(0.85).step()
           next = !next;
@@ -125,15 +111,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    console.log("onReady")
+  onReady: function () {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    console.log("onShow")
+  onShow: function () {
     this.setData({
       canvasHeight: H
     })
@@ -143,7 +128,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     console.log("onHide")
     isPlay = false
     innerAudioContext.pause()
@@ -152,38 +137,36 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     console.log("onUnload")
     innerAudioContext.stop()
-    innerAudioContext == null
-    isPlay = false
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     let that = this;
     return {
       title: article.title, // 转发后 所显示的title
       // path: 'pages/article/article?index=' + index, // 相对的路径
-      path: 'pages/home/home?index=' + index, // 相对的路径
+      path: 'pages/home/home?type=81&index=' + index, // 相对的路径
       imageUrl: article.coverUrl,
-      success: (res) => { // 成功后要做的事情
+      success: (res) => {    // 成功后要做的事情
         console.log(res.shareTickets[0])
 
         wx.getShareInfo({
@@ -194,21 +177,17 @@ Page({
             })
             console.log(that.setData.isShow)
           },
-          fail: function(res) {
-            console.log(res)
-          },
-          complete: function(res) {
-            console.log(res)
-          }
+          fail: function (res) { console.log(res) },
+          complete: function (res) { console.log(res) }
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 分享失败
         console.log(res)
       }
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -216,37 +195,36 @@ Page({
       hasUserInfo: true
     })
   },
-  getUser2: function() {
-      if (app.globalData.userInfo) {
+  getUser2: function () {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: app.globalData.userInfo,
+          userInfo: res.userInfo,
           hasUserInfo: true
         })
-      } else if (this.data.canIUse) {
-        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        // 所以此处加入 callback 以防止这种情况
-        app.userInfoReadyCallback = res => {
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
         }
-      } else {
-        // 在没有 open-type=getUserInfo 版本的兼容处理
-        wx.getUserInfo({
-          success: res => {
-            app.globalData.userInfo = res.userInfo
-            this.setData({
-              userInfo: res.userInfo,
-              hasUserInfo: true
-            })
-          }
-        })
-      }
+      })
     }
+  }
 
-    ,
-  musicTap(event) {
+  , musicTap(event) {
     if (isPlay) {
       isPlay = false
       innerAudioContext.pause()
@@ -259,10 +237,6 @@ Page({
 
   ,
   playMusic() {
-
-    if (article == null || article == "undefined"){
-      return
-    }
     if (innerAudioContext == null) {
       // 音频播放
       innerAudioContext = wx.createInnerAudioContext()

@@ -1,0 +1,120 @@
+<view class='root'>
+  <view class="rootContainer">
+    <view class="jingxuanBlock">
+      <text class='title'>精选祝福</text>
+      <text bindtap="moreTap" data-index="精选祝福" class='more'>更多祝福></text>
+
+      <block wx:for-items="{{blessHomeJingxuanArticles}}" wx:key="{{item.left.id}}">
+        <view class="rowBlock">
+          <view class="item">
+            <image bindtap="itemTap" data-index="{{item.left._id}}" mode="aspectFill" class="image" src="{{item.left.coverUrl}}">
+            </image>
+            <block wx:if="{{index===0}}">
+              <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>
+              </image>
+            </block>
+
+            <text bindtap="itemTap" data-index="{{item.left._id}}" class='itemText'>{{item.left.title}}</text>
+          </view>
+          <view class="item">
+            <image bindtap="itemTap" data-index="{{item.right._id}}" mode="aspectFill" class="image" src="{{item.right.coverUrl}}">
+            </image>
+            <block wx:if="{{index===0}}">
+              <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>
+              </image>
+            </block>
+            <text bindtap="itemTap" data-index="{{item.right._id}}" class='itemText'>{{item.right.title}}</text>
+          </view>
+        </view>
+      </block>
+
+    </view>
+
+    <view class="jingxuanBlock">
+      <text class='title'>节日祝福</text>
+      <text bindtap="moreTap" data-index="节日祝福" class='more'>更多祝福></text>
+
+      <block wx:for-items="{{lRListJieri}}" wx:key="{{item.left.id}}">
+        <view class="rowBlock">
+          <view class="item">
+            <image bindtap="itemTap" data-index="{{item.left._id}}" mode="aspectFill" class="image" src="{{item.left.coverUrl}}">
+            </image>
+            <block wx:if="{{index===0}}">
+              <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>
+              </image>
+            </block>
+
+            <text bindtap="itemTap" data-index="{{item.left._id}}" class='itemText'>{{item.left.title}}</text>
+          </view>
+          <view class="item">
+            <image bindtap="itemTap" data-index="{{item.right._id}}" mode="aspectFill" class="image" src="{{item.right.coverUrl}}">
+            </image>
+            <block wx:if="{{index===0}}">
+              <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>
+              </image>
+            </block>
+            <text bindtap="itemTap" data-index="{{item.right._id}}" class='itemText'>{{item.right.title}}</text>
+          </view>
+        </view>
+      </block>
+
+    </view>
+
+
+    <view class="jingxuanBlock">
+      <text class='title'>朋友祝福</text>
+      <text bindtap="moreTap" data-index="朋友祝福" class='more'>更多祝福></text>
+
+      <block wx:for-items="{{lRListfriend}}" wx:key="{{item.left.id}}">
+        <view class="rowBlock">
+          <view class="item">
+            <image bindtap="itemTap" data-index="{{item.left._id}}" mode="aspectFill" class="image" src="{{item.left.coverUrl}}">
+            </image>
+            <block wx:if="{{index===0}}">
+              <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>
+              </image>
+            </block>
+
+            <text bindtap="itemTap" data-index="{{item.left._id}}" class='itemText'>{{item.left.title}}</text>
+          </view>
+          <view class="item">
+            <image bindtap="itemTap" data-index="{{item.right._id}}" mode="aspectFill" class="image" src="{{item.right.coverUrl}}">
+            </image>
+            <block wx:if="{{index===0}}">
+              <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>
+              </image>
+            </block>
+            <text bindtap="itemTap" data-index="{{item.right._id}}" class='itemText'>{{item.right.title}}</text>
+          </view>
+        </view>
+      </block>
+
+    </view>
+
+    <!-- 全部 -->
+
+    <view class="articlesContainer">
+      <text class='title'>全部祝福</text>
+      <block wx:for-items="{{articleList}}" wx:key="{{item._id}}">
+
+        <view class='itemContainer'>
+          <image bindtap="itemTap" mode="aspectFill" data-index="{{item._id}}" class="imageArticle" src="{{item.coverUrl}}">
+          </image>
+          <text bindtap="itemTap" data-index="{{item._id}}" class='itemArticleText'>{{item.title}}</text>
+          
+          <image bindtap="itemTap" data-index="{{item._id}}" class='playIcon' src='../../image/ic_play.png'>
+          </image>
+
+        </view>
+
+      </block>
+    </view>
+    <!-- 全部 -->
+  </view>
+
+  <!-- <image animation='{{animationButton}}' class="tips" src='https://img.zcool.cn/community/014d7c5d3c29c1a8012187f4514be2.png@1280w_1l_2o_100sh.png'></image>
+   -->
+  <loading hidden="{{hiddenLoad}}">
+    加载中...
+  </loading>
+</view>

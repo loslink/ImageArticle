@@ -55,19 +55,25 @@
       </view>
       <!-- <text class='name'>亲爱的{{userInfo.nickName}}</text> -->
       <!-- <text class='name' style='color:{{colors[-1]}}'>亲爱的朋友</text> -->
-      <text class='name' style='color:{{colors[-1]}}'>一定要注意身体</text>
-      <text class='name' style='color:{{colors[-2]}}'>注意休息</text>
-      <text class='name' style='color:{{colors[-4]}}'>愿你开开心心度过每一天</text>
-      <text class='name' style='color:{{colors[-5]}}'>一定要把祝福传递出去</text>
+      <text class='name' style='color:{{colors[0]}}'>一定要注意身体</text>
+      <text class='name' style='color:{{colors[0]}}'>注意休息</text>
+      <text class='name' style='color:{{colors[0]}}'>愿你开开心心度过每一天</text>
+      <text class='name' style='color:{{colors[0]}}'>一定要转发给亲爱的朋友看看</text>
     </view>
 
   </view>
-
+<canvas class="snow" style="height:{{canvasHeight}}px" canvas-id="myCanvas">
+  </canvas>
   <image class="floatMusic" bindtap="musicTap" animation="{{animationData}}" src='../../image/ic_music.png'>
   </image>
 
   <view class='shareBottom'>
     <button open-type="share" class='shareButtonL'>转发给朋友</button>
-    <button open-type="share" class='shareButtonR'>转发到群</button>
+    <button open-type="share" class='shareButtonR' animation="{{animationButton}}">转发到群</button>
   </view>
+
+
+  <loading hidden="{{hiddenLoad}}">
+    加载中...
+  </loading>
 </view>

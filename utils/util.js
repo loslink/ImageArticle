@@ -55,13 +55,19 @@ function currentDateWeek() {
   return dateObj;
 }
 
-const colors = ["#323232"]
+// const colors = ["#323232"]
+const colors = ["#ffffff"]
 // const colors = ["#d42b2b","#2bd46c"]
+const flowerBorders = [
+"https://img.zcool.cn/community/01aef55d3c29c1a80120695c17760b.png@1280w_1l_2o_100sh.png",
+"https://img.zcool.cn/community/0120b85d3c29c1a8012187f4d517c9.png@1280w_1l_2o_100sh.png",
+"https://img.zcool.cn/community/0170065d3c29c1a8012187f43c0edb.png@1280w_1l_2o_100sh.png"]
 
 module.exports = {
   formatTime: formatTime,
   formatTime2: formatTime2,
   currentDateWeek: currentDateWeek,
   colors:colors,
-  currentTimeType: currentTimeType
+  currentTimeType: currentTimeType,
+  flowerBorders: flowerBorders
 }

@@ -1,7 +1,13 @@
 {
   "pages": [
+    "pages/bless/bless",
+    "pages/beautyArticle/beautyArticle",
+    "pages/health/health",
     "pages/home/home",
     "pages/article/article",
+    "pages/armyDay/armyDay",
+    "pages/blessDetail/blessDetail",
+    "pages/moreBlessList/moreBlessList",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -10,6 +16,32 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "祝福小图文",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#f05362",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/bless/bless",
+        "iconPath": "image/blessing_unselect.png",
+        "selectedIconPath": "image/blessing_selected.png",
+        "text": "祝福"
+      },
+      {
+        "pagePath": "pages/beautyArticle/beautyArticle",
+        "iconPath": "image/article_unselect.png",
+        "selectedIconPath": "image/article_selected.png",
+        "text": "美文"
+      },
+      {
+        "pagePath": "pages/health/health",
+        "iconPath": "image/health_unselect.png",
+        "selectedIconPath": "image/health_selected.png",
+        "text": "养生"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

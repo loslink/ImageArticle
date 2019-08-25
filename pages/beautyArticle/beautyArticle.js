@@ -1,4 +1,4 @@
-// pages/home/home.js
+
 var globalData = require('../../data/globalData.js');
 var ccFile = require('../../utils/calendar-converter.js')
 var calendarConverter = new ccFile.CalendarConverter();
@@ -15,19 +15,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:"人生日历",
+    title: "人生日历",
     articleList: {},
     date: "",
     week: "",
     luner: "",
     hiddenLoad: false,
-    
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     context = this
     var result = calendarConverter.solar2lunar(new Date());
     console.log(result);
@@ -41,13 +41,13 @@ Page({
       flowerBorders: util.flowerBorders,
     })
 
-    
+
 
     wx.cloud.callFunction({
       // 云函数名称
       name: 'getHomeList',
       // name: 'getHomeListTest',
-      success: function(res) {
+      success: function (res) {
         // console.log(res.result.data) // 3
         var list = globalData.list.concat(res.result.data)
         globalData.list = list
@@ -85,7 +85,7 @@ Page({
         globalData.headBg = res.data[0].headBg
         context.setData({
           title: res.data[0].title,
-          headBg: globalData.headBg 
+          headBg: globalData.headBg
         })
       }
     })
@@ -119,46 +119,46 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function () {
+    console.log('beauty onShow')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-
+  onHide: function () {
+    console.log('beauty onHide')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-
+  onUnload: function () {
+    console.log('beauty onUnload')
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-    
+  onReachBottom: function () {
+
     // this.getArticles(pageNum * pageSize, pageSize)
   },
-  getArticles:function(skip,limit){
+  getArticles: function (skip, limit) {
     articles
       .skip(skip) // 跳过结果集中的前 10 条，从第 11 条开始返回
       .limit(limit) // 限制返回数量为 10 条
@@ -181,7 +181,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
     let that = this;
     return {
@@ -199,32 +199,24 @@ Page({
             })
             console.log(that.setData.isShow)
           },
-          fail: function(res) {
+          fail: function (res) {
             console.log(res)
           },
-          complete: function(res) {
+          complete: function (res) {
             console.log(res)
           }
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 分享失败
         console.log(res)
       }
     }
   },
   itemTap(event) {
-    var index = event.currentTarget.dataset['index'];
-    const item=context.data.articleList[index]
-    console.log(item)
+    var id = event.currentTarget.dataset['index'];
     var url
-    if (item.type==="81"){
-      console.log("81")
-      url = '../armyDay/armyDay?index=' + index
-    }else{
-      console.log("normal")
-      url = '../article/article?index=' + index
-    }
+    url = '../article/article?id=' + id
     wx.navigateTo({
       url: url,
     })

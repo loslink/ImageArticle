@@ -19,14 +19,14 @@
     <!-- <video src='http://video.699pic.com/videos/85/08/79/a_ZBVkgmya3Wiw1544850879.mp4'>
   </video> -->
 
-    <block wx:for-items="{{articleList}}" wx:key="{{item.id}}">
+    <block wx:for-items="{{articleList}}" wx:key="{{item._id}}">
 
       <view class='itemContainer'>
-        <image bindtap="itemTap" mode="aspectFill" data-index="{{index}}" class="image" src="{{item.coverUrl}}">
+        <image bindtap="itemTap" mode="aspectFill" data-index="{{item._id}}" class="image" src="{{item.coverUrl}}">
         </image>
-        <text  bindtap="itemTap" data-index="{{index}}" class='itemText'>{{item.title}}</text>
+        <text  bindtap="itemTap" data-index="{{item._id}}" class='itemText'>{{item.title}}</text>
         <!-- <image bindtap="itemTap" data-index="{{index}}" class='flowerBorder' src='{{flowerBorders[index%flowerBorders.length]}}'> </image> -->
-        <image bindtap="itemTap" data-index="{{index}}"  class='playIcon' src='../../image/ic_play.png'>
+        <image bindtap="itemTap" data-index="{{item._id}}"  class='playIcon' src='../../image/ic_play.png'>
         </image>
 
         <block wx:if="{{index===0||index===1}}">
@@ -42,7 +42,7 @@
   <image animation='{{animationButton}}' class="tips" src='https://img.zcool.cn/community/014d7c5d3c29c1a8012187f4514be2.png@1280w_1l_2o_100sh.png'></image>
   
 
-  <loading hidden=" {{hiddenLoad}} ">
+  <loading hidden="{{hiddenLoad}}">
     加载中...
   </loading>
 </view>

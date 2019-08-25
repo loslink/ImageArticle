@@ -3,22 +3,6 @@
   <!-- <image class="background" src='../../image/ic_background.png'></image> -->
   <view class="rootContainer">
 
-    <view class='headContainer'>
-      <!-- <image class="headBg"  src="../../image/ic_headview.png">
-      </image> -->
-      <image class="headBg" src="{{headBg}}">
-      </image>
-      <view class='head'>
-        <text class='title'>{{title}}</text>
-        <text class='date'>{{date}}</text>
-        <text class='week'>{{week}}</text>
-        <text class='week'>{{luner}}</text>
-      </view>
-    </view>
-
-    <!-- <video src='http://video.699pic.com/videos/85/08/79/a_ZBVkgmya3Wiw1544850879.mp4'>
-  </video> -->
-
     <block wx:for-items="{{articleList}}" wx:key="{{item.id}}">
 
       <view class='itemContainer'>
@@ -42,7 +26,7 @@
   <image animation='{{animationButton}}' class="tips" src='https://img.zcool.cn/community/014d7c5d3c29c1a8012187f4514be2.png@1280w_1l_2o_100sh.png'></image>
   
 
-  <loading hidden=" {{hiddenLoad}} ">
+  <loading hidden="{{hiddenLoad}}">
     加载中...
   </loading>
 </view>

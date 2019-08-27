@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  /* background-color: #f5f5f5; */
   background-color: white;
-  color: black;
+  color: #000;
 }
 
 .articleRoot{
@@ -24,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding-bottom: 200rpx; */
+  padding-bottom: 200rpx;
 }
 
 .userName{
@@ -36,6 +37,8 @@
   margin-top: 20rpx;
   font-size: 48rpx;
   font-weight: bold;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
 }
 
 .name{
@@ -50,19 +53,15 @@
   margin-top: 20rpx;
   font-size: 40rpx;
   font-weight: bold;
-  color: red
 }
 
 .content{
-  margin-top: 36rpx;
-  /* margin-bottom: 18rpx; */
-  font-size: 36rpx;
+  width: 690rpx;
+  margin-top: 20rpx;
+  font-size: 40rpx;
   font-weight: bold;
-  padding-left: 35rpx;
-  padding-right: 35rpx;
-  line-height: 70rpx;
-  letter-spacing: 8rpx;
-  /* text-indent: 60rpx; */
+  padding-left: 30rpx;
+  padding-right: 30rpx;
 }
 
 .topHeadContainer{
@@ -92,33 +91,7 @@
 .headGif{
   width: 678rpx;
   height: 100%;
-  display: block; /* 解决图片外面有间隙 */
-}
-
-.photoContainer{
-  padding: 6rpx;
-  height: 100%;
-  /* background-color: #ff4a4a; */
-  margin-top: 36rpx;
-  border-radius: 10rpx;
-}
-
-.titleImg{
-  width: 500rpx;
-  height: 100%;
-  margin-top: 42rpx;
-}
-
-.topBanner{
-  width: 100%;
-  height: 100rpx;
-}
-
-.bottomBanner{
-  width: 100%;
-  height: 100rpx;
-  margin-top: 36rpx;
-  margin-bottom: 200rpx;
+  margin-top: 20rpx;
 }
 
 .floatMusic{
@@ -158,6 +131,7 @@
   color: white;
   border-radius: 48rpx;
 }
+
 
 .snow{
   width: 100%;

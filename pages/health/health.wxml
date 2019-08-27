@@ -3,15 +3,15 @@
   <!-- <image class="background" src='../../image/ic_background.png'></image> -->
   <view class="rootContainer">
 
-    <block wx:for-items="{{articleList}}" wx:key="{{item.id}}">
+    <block wx:for-items="{{articleList}}" wx:key="{{item._id}}">
 
       <view class='itemContainer'>
-        <image bindtap="itemTap" mode="aspectFill" data-index="{{index}}" class="image" src="{{item.coverUrl}}">
+        <image bindtap="itemTap" mode="aspectFill" data-index="{{item._id}}" class="image" src="{{item.coverUrl}}">
         </image>
-        <text  bindtap="itemTap" data-index="{{index}}" class='itemText'>{{item.title}}</text>
-        <!-- <image bindtap="itemTap" data-index="{{index}}" class='flowerBorder' src='{{flowerBorders[index%flowerBorders.length]}}'> </image> -->
-        <image bindtap="itemTap" data-index="{{index}}"  class='playIcon' src='../../image/ic_play.png'>
-        </image>
+        <text  bindtap="itemTap" data-index="{{item._id}}" class='itemText'>{{item.title}}</text>
+        
+        <!-- <image bindtap="itemTap" data-index="{{item._id}}"  class='playIcon' src='../../image/ic_play.png'>
+        </image> -->
 
         <block wx:if="{{index===0||index===1}}">
           <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>

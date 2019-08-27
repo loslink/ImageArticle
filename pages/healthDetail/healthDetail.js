@@ -27,7 +27,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     context = this
     console.log("onLoad")
@@ -44,7 +44,7 @@ Page({
       name: 'getArticleDetail',
       data: {
         id: id,
-        tableName: "articles"
+        tableName: "healthArticles"
       },
       success: function (res) {
         console.log(res.result) // 3
@@ -83,7 +83,7 @@ Page({
     var n = 0;
     isPlay = true
     //连续动画需要添加定时器,所传参数每次+1就行
-    setInterval(function() {
+    setInterval(function () {
       if (isPlay) {
         n = n + 1;
         // console.log(n);
@@ -107,7 +107,7 @@ Page({
       })
       var next = true;
       //连续动画关键步骤
-      setInterval(function() {
+      setInterval(function () {
         if (next) {
           animation.scale(0.85).step()
           next = !next;
@@ -125,14 +125,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     console.log("onReady")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     console.log("onShow")
     this.setData({
       canvasHeight: H
@@ -143,7 +143,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     console.log("onHide")
     isPlay = false
     innerAudioContext.pause()
@@ -152,7 +152,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     console.log("onUnload")
     innerAudioContext.stop()
     innerAudioContext == null
@@ -162,25 +162,26 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     let that = this;
     return {
       title: article.title, // 转发后 所显示的title
-      path: 'pages/beautyArticle/beautyArticle?id=' + id, // 相对的路径
+      // path: 'pages/article/article?index=' + index, // 相对的路径
+      path: 'pages/health/health?id=' + id, // 相对的路径
       imageUrl: article.coverUrl,
       success: (res) => { // 成功后要做的事情
         console.log(res.shareTickets[0])
@@ -193,21 +194,21 @@ Page({
             })
             console.log(that.setData.isShow)
           },
-          fail: function(res) {
+          fail: function (res) {
             console.log(res)
           },
-          complete: function(res) {
+          complete: function (res) {
             console.log(res)
           }
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         // 分享失败
         console.log(res)
       }
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -215,36 +216,36 @@ Page({
       hasUserInfo: true
     })
   },
-  getUser2: function() {
-      if (app.globalData.userInfo) {
+  getUser2: function () {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: app.globalData.userInfo,
+          userInfo: res.userInfo,
           hasUserInfo: true
         })
-      } else if (this.data.canIUse) {
-        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        // 所以此处加入 callback 以防止这种情况
-        app.userInfoReadyCallback = res => {
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
         }
-      } else {
-        // 在没有 open-type=getUserInfo 版本的兼容处理
-        wx.getUserInfo({
-          success: res => {
-            app.globalData.userInfo = res.userInfo
-            this.setData({
-              userInfo: res.userInfo,
-              hasUserInfo: true
-            })
-          }
-        })
-      }
+      })
     }
+  }
 
-    ,
+  ,
   musicTap(event) {
     if (isPlay) {
       isPlay = false
@@ -259,7 +260,7 @@ Page({
   ,
   playMusic() {
 
-    if (article == null || article == "undefined"){
+    if (article == null || article == "undefined") {
       return
     }
     if (innerAudioContext == null) {

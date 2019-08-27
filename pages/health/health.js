@@ -26,12 +26,20 @@ Page({
   onLoad: function (options) {
     context = this
     
+    var id = options.id
+    var url
+    url = '../healthDetail/healthDetail?id=' + id
+    if (id) {
+      wx.navigateTo({
+        url: url,
+      })
+    }
 
     wx.cloud.callFunction({
       // 云函数名称
       name: 'getHealthList',
       success: function (res) {
-        // console.log(res.result.data) // 3
+        // console.log(res.result.data) // 
         var list = res.result.data
         // globalData.list = list
         context.setData({
@@ -175,17 +183,9 @@ Page({
     }
   },
   itemTap(event) {
-    var index = event.currentTarget.dataset['index'];
-    const item = context.data.articleList[index]
-    console.log(item)
+    var id = event.currentTarget.dataset['index'];
     var url
-    if (item.type === "81") {
-      console.log("81")
-      url = '../armyDay/armyDay?index=' + index
-    } else {
-      console.log("normal")
-      url = '../article/article?index=' + index
-    }
+    url = '../healthDetail/healthDetail?id=' + id
     wx.navigateTo({
       url: url,
     })

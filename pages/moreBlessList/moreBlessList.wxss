@@ -54,7 +54,7 @@
 
 
 .image {
-  background-color: #333;
+  background-color: transparent;
   width: 320rpx;
   height: 240rpx;
   margin-left:20rpx;

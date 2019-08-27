@@ -162,6 +162,9 @@ Page({
   },
   itemTap(event) {
     var id = event.currentTarget.dataset['index'];
+    if(id == null){
+      return
+    }
     var url
     url = '../blessDetail/blessDetail?id=' + id
     wx.navigateTo({

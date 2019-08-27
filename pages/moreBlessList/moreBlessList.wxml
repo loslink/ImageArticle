@@ -13,6 +13,7 @@
 
             <text bindtap="itemTap" data-index="{{item.left._id}}" class='itemText'>{{item.left.title}}</text>
           </view>
+
           <view class="item">
             <image bindtap="itemTap" data-index="{{item.right._id}}" mode="aspectFill" class="image" src="{{item.right.coverUrl}}">
             </image>

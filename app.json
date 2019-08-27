@@ -8,6 +8,7 @@
     "pages/armyDay/armyDay",
     "pages/blessDetail/blessDetail",
     "pages/moreBlessList/moreBlessList",
+    "pages/healthDetail/healthDetail",
     "pages/index/index",
     "pages/logs/logs"
   ],

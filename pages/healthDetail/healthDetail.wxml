@@ -3,43 +3,31 @@
 
     <view class='headContainer'>
 
-      <view class='topHeadContainer'>
-        <!-- <image class="userHead" src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2594287337,3052279307&fm=26&gp=0.jpg'>
-        </image> -->
+      <!-- <view class='topHeadContainer'>
         <open-data class="userHead" type="userAvatarUrl"></open-data>
         <image class="headWrapper" src='../../image/ic_head_wraper.png'>
         </image>
-      </view>
+      </view> -->
 
       <view class='userName'>
-        <text class='firstname'>亲爱的</text>
-        <open-data class='firstname' type="userNickName"></open-data>
+        <text class='firstname'>{{detailData.title}}</text>
+        <!-- <open-data class='firstname' type="userNickName"></open-data> -->
       </view>
 
-      <image class="headGif" mode='widthFix' src='{{headPhoto}}'>
+      <!-- <image class="headGif" mode='widthFix' src='{{headPhoto}}'>
       </image>
       <text class='name' style='color:{{colors[-1]}}'>今天是{{date}}</text>
-      <text class='name' style='color:{{colors[-1]}}'>{{week}}</text>
-      <!-- <text class='name' style='color:{{colors[-2]}}'>千言万语不如一句祝福</text>
-      <text class='name' style='color:{{colors[-3]}}'>祝愿所有的朋友</text>
-      <text class='name' style='color:{{colors[-4]}}'>天天快乐</text>
-      <text class='name' style='color:{{colors[-5]}}'>看到的人都有好福气</text> -->
+      <text class='name' style='color:{{colors[-1]}}'>{{week}}</text> -->
     </view>
 
     <block wx:for-items="{{detailData.contents}}" wx:for-item="content" wx:key='index' wx:for-index="index">
     <block wx:for-items="{{content.msg}}" wx:for-item="msg" wx:for-index="msgIndex">
-        <text class='content' style='color:{{colors[index%colors.length]}}'>{{msg}}</text>
+        <text class='content'>{{msg}}</text>
       </block>
       <image class="headGif" mode='widthFix' src='{{content.photo}}'></image>
       
     </block>
 
-    <!-- <block wx:if="{{'jj'==='http'}}">
-      <text class='name'>福气qqq{{detailData.title}}</text>
-    </block>
-    <block wx:else>
-      <text class='name'>福气dd{{detailData.title}}</text>
-    </block> -->
     <view class='footContainer'>
       <view class='topHeadContainer'>
         <!-- <image class="userHead" src='{{userInfo.avatarUrl}}'>
@@ -53,12 +41,10 @@
         <text class='bottomName'>亲爱的</text>
         <open-data class='bottomName' type="userNickName"></open-data>
       </view>
-      <!-- <text class='name'>亲爱的{{userInfo.nickName}}</text> -->
-      <!-- <text class='name' style='color:{{colors[-1]}}'>亲爱的朋友</text> -->
-      <text class='name' style='color:{{colors[0]}}'>一定要注意身体</text>
-      <text class='name' style='color:{{colors[0]}}'>注意休息</text>
-      <text class='name' style='color:{{colors[0]}}'>愿你开开心心度过每一天</text>
-      <text class='name' style='color:{{colors[0]}}'>一定要转发给亲爱的朋友看看</text>
+      <text class='name' >一定要注意身体</text>
+      <text class='name' >注意休息</text>
+      <text class='name' >愿你开开心心度过每一天</text>
+      <text class='name' >一定要转发给亲爱的朋友看看</text>
     </view>
 
   </view>

@@ -51,12 +51,19 @@ Page({
       success: function (res) {
         console.log(res.result) // 3
         article = res.result.data
+        var bottomText="";
+        if (article.type == "节日祝福"){
+          bottomText = "祝您" + article.title.replace("祝福", "快乐");
+        }else{
+          bottomText = "祝您天天快乐";
+        }
         context.setData({
           detailData: article,
           colors: util.colors,
           date: week.time,
           week: week.week,
           headPhoto: headPhoto,
+          bottomText: bottomText,
           hiddenLoad: true,
           animationData: {}
         })
@@ -180,10 +187,9 @@ Page({
   onShareAppMessage: function () {
     let that = this;
     return {
-      title: article.title, // 转发后 所显示的title
-      // path: 'pages/article/article?index=' + index, // 相对的路径
-      path: 'pages/home/home?type=81&index=' + index, // 相对的路径
-      imageUrl: article.coverUrl,
+      title: article.shareText, // 转发后 所显示的title
+      path: 'pages/bless/bless?id=' + id, // 绝对的路径
+      imageUrl: article.shareUrl,
       success: (res) => {    // 成功后要做的事情
         console.log(res.shareTickets[0])
 

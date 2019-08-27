@@ -28,6 +28,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    var id = options.id
+    var url
+    url = '../article/article?id=' + id
+    if (id) {
+      wx.navigateTo({
+        url: url,
+      })
+    }
+
     context = this
     var result = calendarConverter.solar2lunar(new Date());
     console.log(result);
@@ -56,21 +66,6 @@ Page({
           hiddenLoad: true
         })
 
-        var index = context.options.index
-        var type = context.options.type
-        var url
-        if (type === "81") {
-          console.log("81")
-          url = '../armyDay/armyDay?index=' + index
-        } else {
-          console.log("normal")
-          url = '../article/article?index=' + index
-        }
-        if (index) {
-          wx.navigateTo({
-            url: url,
-          })
-        }
       },
       fail: console.error
     })

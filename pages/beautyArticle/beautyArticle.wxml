@@ -1,7 +1,7 @@
  <view class="root">
 
   <!-- <image class="background" src='../../image/ic_background.png'></image> -->
-  <view class="rootContainer">
+  <view class="rootContainer" hidden="{{!hiddenLoad}}">
 
     <view class='headContainer'>
       <!-- <image class="headBg"  src="../../image/ic_headview.png">

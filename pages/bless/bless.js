@@ -27,7 +27,16 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+
+    var id = options.id
+    var url
+    url = '../blessDetail/blessDetail?id=' + id
+    if (id) {
+      wx.navigateTo({
+        url: url,
+      })
+    }
     // console.log('onLoad')
     context = this
     var result = calendarConverter.solar2lunar(new Date());
@@ -43,7 +52,7 @@ Page({
     })
 
     db.collection('homeShere').get({
-      success: function (res) {
+      success: function(res) {
         // console.log(res.data)
         globalData.homeShareTitle = res.data[0].shareTitle
         globalData.homeSharePhoto = res.data[0].sharePhoto
@@ -58,6 +67,7 @@ Page({
 
     buttonAnim()
     const that = this
+
     function buttonAnim() {
       var animation = wx.createAnimation({
         duration: 500,
@@ -65,7 +75,7 @@ Page({
       })
       var next = true;
       //连续动画关键步骤
-      setInterval(function () {
+      setInterval(function() {
         if (next) {
           animation.scale(0.85).step()
           next = !next;
@@ -83,30 +93,39 @@ Page({
     wx.cloud.callFunction({
       // 云函数名称
       name: 'getHomeBlessArticles',
-      success: function (res) {
+      success: function(res) {
         console.log(res.result) // 3
         var jingxuan = globalData.blessHomeJingxuanArticles.concat(res.result.jingxuan)
         globalData.blessHomeJingxuanArticles = jingxuan
         var lRListJingxuan = []
-        for (let i = 0; i < jingxuan.length/2; i++) { 
-          lRListJingxuan.push({ left: jingxuan[i * 2], right: jingxuan[i * 2+1] })
+        for (let i = 0; i < jingxuan.length / 2; i++) {
+          lRListJingxuan.push({
+            left: jingxuan[i * 2],
+            right: jingxuan[i * 2 + 1]
+          })
         }
 
         var jieri = res.result.jieri
         var lRListJieri = []
         for (let i = 0; i < jieri.length / 2; i++) {
-          lRListJieri.push({ left: jieri[i * 2], right: jieri[i * 2 + 1] })
+          lRListJieri.push({
+            left: jieri[i * 2],
+            right: jieri[i * 2 + 1]
+          })
         }
 
         var friend = res.result.friend
         var lRListfriend = []
         for (let i = 0; i < friend.length / 2; i++) {
-          lRListfriend.push({ left: friend[i * 2], right: friend[i * 2 + 1] })
+          lRListfriend.push({
+            left: friend[i * 2],
+            right: friend[i * 2 + 1]
+          })
         }
 
         var allList = globalData.allBlessList.concat(res.result.allList)
         globalData.allBlessList = allList
-        
+
         // console.log(lRList) 
         context.setData({
           articleList: allList,
@@ -116,21 +135,7 @@ Page({
           hiddenLoad: true
         })
 
-        // var index = context.options.index
-        // var type = context.options.type
-        // var url
-        // if (type === "81") {
-        //   console.log("81")
-        //   url = '../armyDay/armyDay?index=' + index
-        // } else {
-        //   console.log("normal")
-        //   url = '../article/article?index=' + index
-        // }
-        // if (index) {
-        //   wx.navigateTo({
-        //     url: url,
-        //   })
-        // }
+
       },
       fail: console.error
     })
@@ -140,42 +145,42 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     // console.log('onReady')
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     // console.log('onShow')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     // console.log('onHide')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
     // console.log('onUnload')
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
     // this.getArticles(pageNum * pageSize, pageSize)
   },
@@ -183,7 +188,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
     let that = this;
     return {
@@ -201,15 +206,15 @@ Page({
             })
             // console.log(that.setData.isShow)
           },
-          fail: function (res) {
+          fail: function(res) {
             console.log(res)
           },
-          complete: function (res) {
+          complete: function(res) {
             console.log(res)
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         // 分享失败
         console.log(res)
       }

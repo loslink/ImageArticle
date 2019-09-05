@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    getApp().mtj.trackEvent('zhufu_tab_ent');
     var id = options.id
     var url
     url = '../blessDetail/blessDetail?id=' + id
@@ -95,7 +95,7 @@ Page({
       name: 'getHomeBlessArticles',
       success: function(res) {
         console.log(res.result) // 3
-        var jingxuan = globalData.blessHomeJingxuanArticles.concat(res.result.jingxuan)
+        var jingxuan = res.result.jingxuan
         globalData.blessHomeJingxuanArticles = jingxuan
         var lRListJingxuan = []
         for (let i = 0; i < jingxuan.length / 2; i++) {

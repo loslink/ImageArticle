@@ -21,11 +21,11 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载 z
    */
   onLoad: function (options) {
     context = this
-    
+    getApp().mtj.trackEvent('yangsheng_tab_ent');
     var id = options.id
     var url
     url = '../healthDetail/healthDetail?id=' + id
@@ -63,7 +63,12 @@ Page({
           })
         }
       },
-      fail: console.error
+      fail: function(){
+        console.error 
+        context.setData({
+          hiddenLoad: true
+        })
+      }
     })
 
     db.collection('homeShere').get({

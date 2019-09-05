@@ -33,9 +33,10 @@
 }
 
 .firstname{
-  margin-top: 20rpx;
+  margin-top: 40rpx;
   font-size: 48rpx;
   font-weight: bold;
+  color: red
 }
 
 .name{
@@ -56,12 +57,12 @@
 .content{
   margin-top: 36rpx;
   /* margin-bottom: 18rpx; */
-  font-size: 36rpx;
-  font-weight: bold;
+  font-size: 40rpx;
+  /* font-weight: bold; */
   padding-left: 35rpx;
   padding-right: 35rpx;
   line-height: 70rpx;
-  letter-spacing: 8rpx;
+  /* letter-spacing: 4rpx; */
   /* text-indent: 60rpx; */
 }
 

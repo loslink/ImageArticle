@@ -1,6 +1,8 @@
 var screenW = 0;
 var screenH = 0;
 var image
+var snow 
+var timer
 wx.getSystemInfo({
   success: (res) => {
     screenW = res.screenWidth
@@ -12,6 +14,7 @@ class Snow {
     this.canvas = {}
     this.snow = []
     this.init()
+    this.genInterval
   }
 
   init() {
@@ -29,7 +32,7 @@ class Snow {
   }
   //生成雪花
   generateSnow() {
-    setInterval(() => {
+    this.genInterval = setInterval(() => {
       let snows = {
         r: this.rand(10),        //雪花半径
         x: this.rand(screenW),   //雪花坐标位置
@@ -80,17 +83,27 @@ class Snow {
   
   }
 
+  release() {
+    clearInterval(this.genInterval);
+  }
+
+}
+
+function release(){
+  snow.release()
+  clearInterval(timer);
 }
 
 function play(img) {
   image = img
-  let snow = new Snow()
-  var timer = setInterval(() => {
+  snow = new Snow()
+  timer = setInterval(() => {
     snow.drawSnow()
   }, 100)
 }
 
 // export { play }
 module.exports = {
-  play: play
+  play: play,
+  release: release
 }

@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getApp().mtj.trackEvent('article_tab_ent');
     var id = options.id
     var url
     url = '../article/article?id=' + id

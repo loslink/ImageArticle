@@ -18,14 +18,14 @@ exports.main = async (event, context) => {
     const promise = articles.skip(i * MAX_LIMIT).limit(MAX_LIMIT).get()
     tasks.push(promise)
   }
-  var data
+  var data = { data:[] }
   var msg
-  data = (await Promise.all(tasks)).reduce((acc, cur) => {
-    return {
-      data: acc.data.concat(cur.data).reverse(),
-      errMsg: acc.errMsg,
-    }
-  })
+  // data = (await Promise.all(tasks)).reduce((acc, cur) => {
+  //   return {
+  //     data: acc.data.concat(cur.data).reverse(),
+  //     errMsg: acc.errMsg,
+  //   }
+  // })
   data.data.reverse()
   return data
 }

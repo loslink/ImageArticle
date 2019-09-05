@@ -31,6 +31,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    article = null
     context = this
     var image = "../../image/float_star.png"
     fallingObj.play("")
@@ -51,6 +52,9 @@ Page({
       success: function (res) {
         console.log(res.result) // 3
         article = res.result.data
+        getApp().mtj.trackEvent('article_list_click', {
+          article_name: article.title,
+        });
         var bottomText="";
         if (article.type == "节日祝福"){
           bottomText = "祝您" + article.title.replace("祝福", "快乐");
@@ -165,6 +169,9 @@ Page({
   onUnload: function () {
     console.log("onUnload")
     innerAudioContext.stop()
+    innerAudioContext = null
+    isPlay = false
+    fallingObj.release()
   },
 
   /**
@@ -186,13 +193,29 @@ Page({
    */
   onShareAppMessage: function () {
     let that = this;
+    var cover = ""
+    if (article.shareUrl == null){
+      cover = article.coverUrl
+    }else{
+      cover = article.shareUrl
+    }
     return {
       title: article.shareText, // 转发后 所显示的title
       path: 'pages/bless/bless?id=' + id, // 绝对的路径
-      imageUrl: article.shareUrl,
+      imageUrl: cover,
       success: (res) => {    // 成功后要做的事情
         console.log(res.shareTickets[0])
-
+        if (!res.shareTickets) {
+          //分享到个人
+          getApp().mtj.trackEvent('share_friend_click', {
+            article_name: article.title,
+          });
+        } else {
+          //分享到群
+          getApp().mtj.trackEvent('share_group_click', {
+            article_name: article.title,
+          });
+        }
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],
           success: (res) => {
@@ -267,9 +290,10 @@ Page({
     if (innerAudioContext == null) {
       // 音频播放
       innerAudioContext = wx.createInnerAudioContext()
-      innerAudioContext.autoplay = true
-      innerAudioContext.src = article.music
+      
     }
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = article.music
     isPlay = true
     innerAudioContext.play()
     innerAudioContext.onPlay(() => {

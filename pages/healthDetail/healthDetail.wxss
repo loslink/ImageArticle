@@ -59,9 +59,9 @@
   width: 690rpx;
   margin-top: 20rpx;
   font-size: 40rpx;
-  font-weight: bold;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
+  /* font-weight: bold; */
+  padding-left: 40rpx;
+  padding-right: 40rpx;
 }
 
 .topHeadContainer{
@@ -91,7 +91,8 @@
 .headGif{
   width: 678rpx;
   height: 100%;
-  margin-top: 20rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 
 .floatMusic{

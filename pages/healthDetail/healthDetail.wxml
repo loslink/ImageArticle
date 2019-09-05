@@ -21,11 +21,11 @@
     </view>
 
     <block wx:for-items="{{detailData.contents}}" wx:for-item="content" wx:key='index' wx:for-index="index">
-    <block wx:for-items="{{content.msg}}" wx:for-item="msg" wx:for-index="msgIndex">
+    
+      <image class="headGif" mode='widthFix' src='{{content.photo}}'></image>
+      <block wx:for-items="{{content.msg}}" wx:for-item="msg" wx:for-index="msgIndex">
         <text class='content'>{{msg}}</text>
       </block>
-      <image class="headGif" mode='widthFix' src='{{content.photo}}'></image>
-      
     </block>
 
     <view class='footContainer'>

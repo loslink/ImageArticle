@@ -34,8 +34,9 @@
         "pagePath": "pages/beautyArticle/beautyArticle",
         "iconPath": "image/article_unselect.png",
         "selectedIconPath": "image/article_selected.png",
-        "text": "美文"
-      },
+        "text": "图文"
+      }
+      ,
       {
         "pagePath": "pages/health/health",
         "iconPath": "image/health_unselect.png",

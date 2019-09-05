@@ -8,17 +8,17 @@ const MAX_LIMIT = 100
 exports.main = async (event, context) => {
 
   const articles = db.collection('blessArticles')
-  const jingxuan = await articles.limit(4).where({ type: "精选祝福" }).get()
-  const jieri = await articles.limit(2).where({ type: "节日祝福" }).get()
-  const friend = await articles.limit(2).where({ type: "朋友祝福" }).get()
+  const jingxuan = await articles.limit(4).orderBy('createTime', 'desc').orderBy('_id', 'desc').where({ type: "精选祝福" }).get()
+  const jieri = await articles.limit(2).orderBy('createTime', 'desc').orderBy('_id', 'desc').where({ type: "节日祝福" }).get()
+  const friend = await articles.limit(4).orderBy('createTime', 'desc').orderBy('_id', 'desc').where({ type: "朋友祝福" }).get()
 
   const allList = await allArticle()
   
   var data = {
     allList: allList,
-    jingxuan: jingxuan.data.reverse(),
-    jieri: jieri.data.reverse(),
-    friend: friend.data.reverse()
+    jingxuan: jingxuan.data,
+    jieri: jieri.data,
+    friend: friend.data // 不知道为什么降序查出来还要reverse
   }
   // data.data.reverse()
   return data

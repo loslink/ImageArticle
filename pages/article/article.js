@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    article = null
     context = this
     console.log("onLoad")
     fallingObj.play("")
@@ -49,6 +49,9 @@ Page({
       success: function (res) {
         console.log(res.result) // 3
         article = res.result.data
+        getApp().mtj.trackEvent('article_list_click', {
+          article_name: article.title,
+        });
         context.setData({
           detailData: article,
           colors: util.colors,
@@ -157,6 +160,7 @@ Page({
     innerAudioContext.stop()
     innerAudioContext == null
     isPlay = false
+    fallingObj.release()
   },
 
   /**
@@ -178,13 +182,24 @@ Page({
    */
   onShareAppMessage: function() {
     let that = this;
+   
     return {
       title: article.title, // 转发后 所显示的title
       path: 'pages/beautyArticle/beautyArticle?id=' + id, // 相对的路径
       imageUrl: article.coverUrl,
       success: (res) => { // 成功后要做的事情
         console.log(res.shareTickets[0])
-
+        if (!res.shareTickets) {
+          //分享到个人
+          getApp().mtj.trackEvent('share_friend_click', {
+            article_name: article.title,
+          });
+        } else {
+          //分享到群
+          getApp().mtj.trackEvent('share_group_click', {
+            article_name: article.title,
+          });
+        }
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],
           success: (res) => {
@@ -265,9 +280,10 @@ Page({
     if (innerAudioContext == null) {
       // 音频播放
       innerAudioContext = wx.createInnerAudioContext()
-      innerAudioContext.autoplay = true
-      innerAudioContext.src = article.music
+      
     }
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = article.music
     isPlay = true
     innerAudioContext.play()
     innerAudioContext.onPlay(() => {

@@ -3,6 +3,8 @@
 
     <image class="topBanner" mode='widthFix' src='{{detailData.banner}}'></image>
 
+   <text class='firstname' >{{detailData.title}}</text>
+
     <block wx:for-items="{{detailData.contents}}" wx:for-item="content" wx:key='index' wx:for-index="index">
       <!-- <image class="titleImg" mode='widthFix' src='{{content.titleUrl}}'></image> -->
 

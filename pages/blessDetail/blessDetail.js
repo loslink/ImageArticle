@@ -33,6 +33,9 @@ Page({
   onLoad: function (options) {
     article = null
     context = this
+    this.setData({
+      musicHide: globalData.musicHide
+    })
     var image = "../../image/float_star.png"
     fallingObj.play("")
     wx.setNavigationBarTitle({
@@ -284,7 +287,7 @@ Page({
 
   ,
   playMusic() {
-    if (article == null || article == "undefined") {
+    if (article == null || article == "undefined" || globalData.musicHide) {
       return
     }
     if (innerAudioContext == null) {

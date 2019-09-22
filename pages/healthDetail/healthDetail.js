@@ -30,6 +30,9 @@ Page({
   onLoad: function (options) {
     article = null
     context = this
+    this.setData({
+      musicHide: globalData.musicHide
+    })
     console.log("onLoad")
     fallingObj.play("")
     wx.setNavigationBarTitle({
@@ -274,7 +277,7 @@ Page({
   ,
   playMusic() {
 
-    if (article == null || article == "undefined") {
+    if (article == null || article == "undefined" || globalData.musicHide) {
       return
     }
     if (innerAudioContext == null) {

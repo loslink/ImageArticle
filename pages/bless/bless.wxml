@@ -102,8 +102,11 @@
           </image>
           <text bindtap="itemTap" data-index="{{item._id}}" class='itemArticleText'>{{item.title}}</text>
           
-          <image bindtap="itemTap" data-index="{{item._id}}" class='playIcon' src='../../image/ic_play.png'>
+  <block wx:if="{{!musicHide}}">
+    <image bindtap="itemTap" data-index="{{item._id}}" class='playIcon' src='../../image/ic_play.png'>
           </image>
+  </block>
+          
 
         </view>
 

@@ -26,8 +26,9 @@
         </image>
         <text  bindtap="itemTap" data-index="{{item._id}}" class='itemText'>{{item.title}}</text>
         <!-- <image bindtap="itemTap" data-index="{{index}}" class='flowerBorder' src='{{flowerBorders[index%flowerBorders.length]}}'> </image> -->
-        <image bindtap="itemTap" data-index="{{item._id}}"  class='playIcon' src='../../image/ic_play.png'>
-        </image>
+
+        <!-- <image bindtap="itemTap" data-index="{{item._id}}"  class='playIcon' src='../../image/ic_play.png'>
+        </image> -->
 
         <block wx:if="{{index===0||index===1}}">
           <image class='hot' src='https://img.zcool.cn/community/018df05d3c29c1a80120695c3735d6.png@1280w_1l_2o_100sh.png'>

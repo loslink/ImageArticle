@@ -5,6 +5,7 @@ var homeSharePhoto = "https://wx1.sinaimg.cn/bmiddle/6275ad2dly1g57f866c2uj20dw0
 var headBg
 var allBlessList = []
 var blessHomeJingxuanArticles = []
+var musicHide = false
 
 module.exports = {
   list: listArticle,
@@ -12,5 +13,6 @@ module.exports = {
   blessHomeJingxuanArticles: blessHomeJingxuanArticles,
   homeSharePhoto: homeSharePhoto,
   homeShareTitle: homeShareTitle,
-  headBg: headBg
+  headBg: headBg,
+  musicHide: musicHide
 }

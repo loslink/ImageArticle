@@ -77,6 +77,7 @@ Page({
         globalData.homeShareTitle = res.data[0].shareTitle
         globalData.homeSharePhoto = res.data[0].sharePhoto
         globalData.headBg = res.data[0].headBg
+        globalData.musicHide = res.data[0].musicHide
         context.setData({
           title: res.data[0].title,
           headBg: globalData.headBg

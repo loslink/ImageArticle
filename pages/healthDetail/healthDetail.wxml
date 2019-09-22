@@ -50,8 +50,11 @@
   </view>
 <canvas class="snow" style="height:{{canvasHeight}}px" canvas-id="myCanvas">
   </canvas>
-  <image class="floatMusic" bindtap="musicTap" animation="{{animationData}}" src='../../image/ic_music.png'>
-  </image>
+  
+  <block wx:if="{{!musicHide}}">
+    <image class="floatMusic" bindtap="musicTap" animation="{{animationData}}" src='../../image/ic_music.png'>
+    </image>
+  </block>
 
   <view class='shareBottom'>
     <button open-type="share" class='shareButtonL'>转发给朋友</button>
